@@ -137,4 +137,16 @@ write:
 \subsubsection*{Correctness: Proof by loop invariant}
 In Mergesort the \textbf{combine} step solves the problem, and thus the
 correctness of \texttt{Merge} will be proved.\newline\newline
-We wish to maintain the following loop invariant. 
+We wish to maintain the following loop invariant:
+\newline\newline
+The \texttt{for}-loop loops from $k=p to r$. Before each iteration of the loop,
+we have the subsequence $A[p..k-1]$, which contains the $k-p$ smallest
+elements of the sequences \texttt{L} and \texttt{R}. Furthermore $L[i]$ and
+$R[j]$ are the smallest elements in the respective sequences that have not been
+copied into \texttt{A}.
+\newline\newline
+\textit{Initialization:}\newline
+Before the first iteration $k=p$ and therefore the $k-p=0$ smallest elements
+have been added to $A[p..k-1]$, which then is empty. Since $i=j=1$, then $L[i]$
+and $R[j]$ are the smallest elements in their respective sequences that have not
+been copied into $A$.
