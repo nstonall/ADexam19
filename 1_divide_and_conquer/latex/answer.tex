@@ -139,8 +139,8 @@ In Mergesort the \textbf{combine} step solves the problem, and thus the
 correctness of \texttt{Merge} will be proved.\newline\newline
 We wish to maintain the following loop invariant:
 \newline\newline
-The \texttt{for}-loop loops from $k=p to r$. Before each iteration of the loop,
-we have the subsequence $A[p..k-1]$, which contains the $k-p$ smallest
+The \texttt{for}-loop loops from $k=p \texttt{ to } r$. Before each iteration of
+the loop, we have the subsequence $A[p..k-1]$, which contains the $k-p$ smallest
 elements of the sequences \texttt{L} and \texttt{R}. Furthermore $L[i]$ and
 $R[j]$ are the smallest elements in the respective sequences that have not been
 copied into \texttt{A}.
@@ -150,3 +150,20 @@ Before the first iteration $k=p$ and therefore the $k-p=0$ smallest elements
 have been added to $A[p..k-1]$, which then is empty. Since $i=j=1$, then $L[i]$
 and $R[j]$ are the smallest elements in their respective sequences that have not
 been copied into $A$.
+\newline\newline
+\textit{Maintenance:}\newline
+There are two cases; $L[i]\leq R[j]$ and $L[i]<R[j]$.\newline\newline
+$L[i]\leq R[j]$\newline
+Before $L[i]$ is copied into $A$, then $A[p..k-1]$ contains the $k-p$ smallest
+elements. After $L[i]$ is copied into $A$ it contains the $k-p+1$ smallest. $k$
+and $i$ are incremented, and the loop invariant holds before the next iteration.
+\newline\newline
+$L[i]>R[j]$\newline
+Here $R[j]$ is added to the $A$, and $k$ and $j$ are incremented. The loop
+invariant also holds for this case.
+\newline\newline
+\textit{Termination:}\newline
+The loop terminates when $k=r+1$, since $r$ is the last element in $A[p..r]$,
+where $r=k-1$. $A$ now contains the $k-p=r-p+1$ smallest elements of $L$ and
+$R$. Only the largest element of both $L$ and $R$ have been added since the
+largest element of each array is a sentinel ($\infty$). The loop invariant holds.
