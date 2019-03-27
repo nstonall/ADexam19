@@ -17,6 +17,20 @@ A[1..A.heap-size]\leq A[1..A.length]$.\newline
 Although $A[1..A.length]$ may contain elements, only the elements in
 $A[1..A.heap-size]$ are valid elements of the heap.
 \begin{figure}[H]
+  \centering
   \includegraphics{pictures/heap.png}
   \caption{Max-heap}
 \end{figure}
+\subsection*{Stacks}
+A stack is a dynamic set with a \textit{LIFO (Last-in, first-out)} policy. The
+\texttt{INSERT} operation is called \texttt{PUSH}, and the \texttt{DELETE}
+operation is called \texttt{POP}. The \texttt{POP} operation takes no argument,
+because of the \textit{LIFO} policy.\newline\newline
+$S.top$ is the index of the most recently added element, such that the stack
+consists of $S[1..S.top]$. If $S.top=0$, then the stack is empty.
+\begin{figure}[H]
+  \centering
+  \includegraphics{pictures/stack.png}
+  \caption{Basic stack operations}
+\end{figure}
+All three stack operations run in $O(1)$ time.
