@@ -17,6 +17,13 @@ maintains the extra credit as "potential energy". This is associated with the
 data structure as a whole, instead of individual operations.
 
 \subsection*{Stack operations}
+\subsubsection*{Aggregate analysis}
+For a sequence of $n$ \texttt{PUSH}, \texttt{POP} and \texttt{MULTIPOP}
+operations on an empty stack, all operations have a total cost of $O(n)$, since
+the number of calls within \texttt{MULTIPOP}, and the number of times
+\texttt{POP} is called, cannot exceed the number of \texttt{PUSH operations},
+which is at most $n$. The average cost of each operation is $O(n)/n=O(1)$.
 
+\subsubsection*{Accounting method}
 
 \subsection*{Dynamic tables}
