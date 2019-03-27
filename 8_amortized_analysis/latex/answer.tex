@@ -1,7 +1,10 @@
+\subsection*{Amortized Analysis}
+
 \subsubsection*{Aggregate analysis}
 We determine an upper bound $T(n)$ on the total cost of a sequence of $n$
 operation. We take the average cost as the amortized cost of each operation, so
-that all operations have the same amortized cost.
+that all operations have the same amortized cost. Even several types of
+operations will have the same amortized cost.
 
 \subsubsection*{Accounting method}
 In the accounting method we charge early operations more than their cost. That
@@ -12,3 +15,8 @@ cost, and we save the extra charge as "prepaid credit".
 The potential method works in the same way as the accounting method, but
 maintains the extra credit as "potential energy". This is associated with the
 data structure as a whole, instead of individual operations.
+
+\subsection*{Stack operations}
+
+
+\subsection*{Dynamic tables}
