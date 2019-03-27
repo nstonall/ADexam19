@@ -10,3 +10,13 @@ The runtime of a \textbf{Divide-and-Conquer} algorithm is expressed as such:
     aT(n/b)+D(n)+C(n)&\textrm{ otherwise.}
   \end{cases}
 \end{align*}
+\subsection*{Fibonacci Heaps}
+A \textit{(binary) heap} is an array structure that looks like a binary tree.
+It has two atrributes; $A.length$ and $A.heap-size$, where $0\leq
+A[1..A.heap-size]\leq A[1..A.length]$.\newline
+Although $A[1..A.length]$ may contain elements, only the elements in
+$A[1..A.heap-size]$ are valid elements of the heap.
+\begin{figure}[H]
+  \includegraphics{pictures/heap.png}
+  \caption{Max-heap}
+\end{figure}
