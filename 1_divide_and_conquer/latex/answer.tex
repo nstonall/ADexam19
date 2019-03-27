@@ -114,25 +114,36 @@ See recursion tree on the next page.
   \includegraphics[scale=0.75]{pictures/recursiontree.png}
   \caption{Recursion tree of \texttt{Mergesort}}
 \end{figure}
-\iffalse
-\makecomment{If there is time - show by substitution}\newline\newline
+From the substitution tree, we can estimate that the runtime is
+$\Theta(n\lg n-n)$. We shall now by substitution show if this holds.
+\newline\newline
 \textit{Guess:} $T(n)=O(n\lg n)$
 \newline\newline
 The want to find an upper bound on the recurrence
 \begin{align*}
   T(n)=2T(\lfloor n/2\rfloor)+n
 \end{align*}
-We assume that this bound holds for all $m<n$ where $m=\lfloor n/2\rfloor$. We
-write:
+We assume that this bound holds for $T(n)\leq cn\lg n\textrm{ for }n\geq n_0$.
+We write:
 \begin{align*}
-  T(n)&\leq\textrm{ }2(c\lfloor n/2\rfloor\lg(\lfloor n/2\rfloor))+n\\
+  T(n)&\leq\textrm{ }2(c\lfloor n/2\rfloor\lg(\lfloor n/2\rfloor))+n&
+  \textrm{Which is smaller than the assumed }T(n)\textrm{.}\\
   &\leq\textrm{ }cn\lg(n/2)+n\\
   &=\textrm{ }cn\lg n-cn\lg2+n\\
   &=\textrm{ }cn\lg-cn+n\\
-  &\leq\textrm{ }cn\lg n\\
-  \floor{n}
+  &\leq\textrm{ }cn\lg n\\\\
+  T(n)&=
+  \begin{cases}
+    \Theta(1)&n=1\\
+    \Theta(n\lg n)&n>1
+  \end{cases}
 \end{align*}
-\fi
+Via strong induction, we have proved the runtime.\newline\newline
+\makecomment{The difference between weak induction and strong indcution only
+appears in induction hypothesis. In weak induction, we only assume that
+particular statement holds at k-th step, while in strong induction, we assume
+that the particular statment holds at all the steps from the base case to k-th
+step.}
 
 \subsubsection*{Correctness: Proof by loop invariant}
 In Mergesort the \textbf{combine} step solves the problem, and thus the
