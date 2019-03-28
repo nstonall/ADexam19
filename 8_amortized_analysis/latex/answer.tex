@@ -1,4 +1,4 @@
-\subsection*{Amortized Analysis - Stack operations}
+\subsection*{Amortized Analysis (Stack operations)}
 \subsubsection*{Aggregate analysis}
 We determine an upper bound $T(n)$ on the total cost of a sequence of $n$
 operation. We take the average cost as the amortized cost of each operation, so
@@ -13,12 +13,21 @@ which is at most $n$. The average cost of each operation is $O(n)/n=O(1)$.
 
 \subsubsection*{Accounting method}
 In the accounting method we charge early operations more than their cost. That
-way we charge less in later opeartions. Each operation has its own amortized
-cost, and we save the extra charge as "prepaid credit".
+way we charge less in later opeartions. The amount we charge each opeartions, is
+its amortized cost, and we save the extra charge as "prepaid credit". If we
+undercharge early on, the credit becomes negative, and the total amortized cost
+incurred at that time will not be an upper bound. We must therefore not
+undercharge in the beginning.
 \newline\newline
+We overcharge the \texttt{PUSH} operation for both the \texttt{PUSH} and
+\texttt{POP} operations, and such the amortized cost of the \texttt{PUSH}
+operation is $2$ and the amortized cost for both \texttt{POP} and
+\texttt{MULTIPOP} is $0$. This means that the amortized cost of each operation
+is in constant time and the total amortized cost is $O(n)$, which is also the
+actual upper bound cost.
 
 \subsection*{Dynamic tables}
 The potential method works in the same way as the accounting method, but
 maintains the extra credit as "potential energy". This is associated with the
 data structure as a whole, instead of individual operations.
-\newline\newline
+%\newline\newline
