@@ -1,23 +1,10 @@
-\subsection*{Amortized Analysis}
-
+\subsection*{Amortized Analysis - Stack operations}
 \subsubsection*{Aggregate analysis}
 We determine an upper bound $T(n)$ on the total cost of a sequence of $n$
 operation. We take the average cost as the amortized cost of each operation, so
 that all operations have the same amortized cost. Even several types of
 operations will have the same amortized cost.
-
-\subsubsection*{Accounting method}
-In the accounting method we charge early operations more than their cost. That
-way we charge less in later opeartions. Each operation has its own amortized
-cost, and we save the extra charge as "prepaid credit".
-
-\subsubsection*{Potential method}
-The potential method works in the same way as the accounting method, but
-maintains the extra credit as "potential energy". This is associated with the
-data structure as a whole, instead of individual operations.
-
-\subsection*{Stack operations}
-\subsubsection*{Aggregate analysis}
+\newline\newline
 For a sequence of $n$ \texttt{PUSH}, \texttt{POP} and \texttt{MULTIPOP}
 operations on an empty stack, all operations have a total cost of $O(n)$, since
 the number of calls within \texttt{MULTIPOP}, and the number of times
@@ -25,5 +12,13 @@ the number of calls within \texttt{MULTIPOP}, and the number of times
 which is at most $n$. The average cost of each operation is $O(n)/n=O(1)$.
 
 \subsubsection*{Accounting method}
+In the accounting method we charge early operations more than their cost. That
+way we charge less in later opeartions. Each operation has its own amortized
+cost, and we save the extra charge as "prepaid credit".
+\newline\newline
 
 \subsection*{Dynamic tables}
+The potential method works in the same way as the accounting method, but
+maintains the extra credit as "potential energy". This is associated with the
+data structure as a whole, instead of individual operations.
+\newline\newline
