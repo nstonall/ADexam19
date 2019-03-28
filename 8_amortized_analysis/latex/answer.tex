@@ -4,7 +4,7 @@ We determine an upper bound $T(n)$ on the total cost of a sequence of $n$
 operation. We take the average cost as the amortized cost of each operation, so
 that all operations have the same amortized cost. Even several types of
 operations will have the same amortized cost.
-\newline\newline
+\newline\newline\textit{Stack operations}\newline
 For a sequence of $n$ \texttt{PUSH}, \texttt{POP} and \texttt{MULTIPOP}
 operations on an empty stack, all operations have a total cost of $O(n)$, since
 the number of calls within \texttt{MULTIPOP}, and the number of times
@@ -18,21 +18,59 @@ its amortized cost, and we save the extra charge as "prepaid credit". If we
 undercharge early on, the credit becomes negative, and the total amortized cost
 incurred at that time will not be an upper bound. We must therefore not
 undercharge in the beginning.
-\newline\newline
-We overcharge the \texttt{PUSH} operation for both the \texttt{PUSH} and
+\newline\newline\textit{Stack operations}\newline
+We charge the \texttt{PUSH} operation for both the \texttt{PUSH} and
 \texttt{POP} operations, and such the amortized cost of the \texttt{PUSH}
 operation is $2$ and the amortized cost for both \texttt{POP} and
 \texttt{MULTIPOP} is $0$. This means that the amortized cost of each operation
 is in constant time and the total amortized cost is $O(n)$, which is also the
-actual upper bound cost.
+actual upper bound worst-case cost.
 
 \subsubsection*{Potential method}
 The potential method works in the same way as the accounting method, but
 maintains the extra credit as "potential energy". This is associated with the
-data structure as a whole, instead of individual operations.
+data structure as a whole, instead of individual operations. The potential
+energy of a initial data structure is denoted as $\Phi(D_0)$. The potential
+energy of a data structure after the $i$th operation is denoted as $\Phi(D_i)$.
+The amortized cost $\hat{c_i}$ of the $i$th operation is calculated as such:
+\begin{align*}
+  \hat{c_i}=c_i+\Phi(D_i)-\Phi(D_{i-1})
+\end{align*}
+The total amortized cost of $n$ operations is:
+\begin{align*}
+  \sum^n_{i=1}\hat{c_i}&=\sum^n_{i=1}(c_i+\Phi(D_i)-\Phi(D_{i-1}))\\
+  &=\sum^n_{i=1}(c_i)+\Phi(D_n)-\Phi(D_{0})
+\end{align*}
+If $\Phi(D_i)-\Phi(D_{i-1})$ yields a positive result, then the amortized cost
+$\hat{c_i}$ represents an overcharge. If it is negative it represents an
+undercharge.
+\newline\newline\textit{Stack operations}\newline
+The potential function $\Phi$ denotes the number of objects in the stack. It
+can never be negative. \newline\newline
+We say that $\Phi(D_i)\geq\Phi(D_0)$. We let $s$ denote the amount of objects
+in the stack. If the potential difference is positive, then there are more
+objects in the stack than before. \newline\newline
+We let the $i$th operation be a \texttt{PUSH} operation on a stack of size $s$.
+\begin{align*}
+  \Phi(D_i)-\Phi(D_{i-1})&=(s+1)-s\\
+  &=1
+\end{align*}
+Therefore the amortized cost of this \texttt{PUSH} operation is:
+\begin{align*}
+  \hat{c_i}&=1+1=2
+\end{align*}
+Let the $i$th operation on the stack be \texttt{MULTIPOP(S,k)}, and let the
+potential difference be $-k'$, where $k'=\textrm{min}(k,s)$ is the amount of
+objects that are popped from the stack. The amortized cost is:
+\begin{align*}
+  \hat{c_i}&=c_i+\Phi(D_i)-\Phi(D_{i-1})\\
+  &=k'-k'\\
+  &=0
+\end{align*}
+The amortized cost of \texttt{POP} is the same, and it is found in the same way.
+\newline\newline
+Since $\Phi(D_i)-\Phi(D_{i-1})$ and each operation has an amortized cost of
+$O(1)$, then the total amortized cost of $n$ operation on the stack is $O(n)$,
+which then is the worst-case upper bound cost.
 
 \subsection*{Dynamic tables}
-The potential method works in the same way as the accounting method, but
-maintains the extra credit as "potential energy". This is associated with the
-data structure as a whole, instead of individual operations.
-%\newline\newline
