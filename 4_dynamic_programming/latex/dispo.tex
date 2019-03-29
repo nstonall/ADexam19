@@ -1,0 +1,31 @@
+\subsection*{Feedback fra Lars}
+\textit{Dejligt. Jeg tror dog ikke, at “2 nestede for-loops" holder i det
+generelle tilfælde — og det vil Christian eller Pawel (læs: sikkert Pawel)
+muligvis slå ned på. Generelt har du dog en god struktur på dit oplæg, og
+overgangen fra et punkt til det næste er meget organisk. Jeg vil dog, i
+stedet for at bevise korrektheden af algoritmen ved en løkkeinvariant,
+anbefale dig at bevise den optimale delstruktur for det rekursive udtryk.
+Korrektheden af algoritmen tager på en måde udgangspunkt i dette, og
+beviset for optimal delstruktur er et bevis, der i mine øjne er bedre
+egnet til et mundtligt oplæg.}
+
+\begin{itemize}
+    \item Dynamic Programming
+    \begin{itemize}
+        \item Divide the problem into subproblem
+        \item Solve the subproblems only once and save the solution
+        \item Top-down memoization: recursion
+        \item Bottom-up: 2 nestede \texttt{for}-loops
+    \end{itemize}
+    \item Longest common subsequence
+    \begin{itemize}
+        \item Finds a string that both the initial strings have in common
+        \item Demonstration by figure
+        \item Runtime $\Theta(mn)$ - 2 nested \texttt{for}-loops
+        \item Correctness - loop invariant
+    \end{itemize}
+    \item Perspective - Greedy algorithms
+    \begin{itemize}
+        \item Optimises in a different way
+    \end{itemize}
+\end{itemize}
