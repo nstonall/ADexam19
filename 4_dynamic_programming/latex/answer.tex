@@ -104,6 +104,35 @@ $Z=[z_1,z_2,\dots,z_k]$ be any LCS of $X$ and $Y$.
   \item If $x_m\neq y_n$, then $z_k\neq y_n$ implies that $Z$ is an LCS of $X$
   and $Y_{n-1}$.
 \end{enumerate}
+Explaination:
+\begin{enumerate}
+  \item If the last element in each sequence are the same, then the same
+  element is in the longest common subsequence, and thus if we remove this last
+  element from each sequence, then $Z$ is still an LCS of $X$ and $Y$.
+  \item If the last element in each sequence are not the same, and the last
+  element of $X$ is not the last element in $Z$, then $Z$ is an LCS of
+  $X_{m-1}$ and $Y$.
+  \item If the last element in each sequence are not the same, and the last
+  element of $Y$ is not the last element in $Z$, then $Z$ is an LCS of $X$ and
+  $Y_{n-1}$.
+\end{enumerate}
+We will prove the optimal substructure by contradiction.
+\begin{enumerate}
+  \item If $z_k\neq x_m$, but $x_m=y_n$, then we could add the value to $Z$,
+  which would then be of length $k+1$. But since $Z$ is the \textbf{longest}
+  common subsequence, there can not be a longer $Z$, and we arrive at a
+  contradiction.\newline\newline
+  To see if $Z_{k-1}$ is an LCS of $X_{m-1}$ and $Y_{n-1}$ we assume that there
+  exists a common subsequence $W$ with length greater than $k-1$. When we append
+  $x_m=y_n$ to $W$ its length will exceed $k$, which is larger than $Z$, and
+  thus we arrive at a contradiction.
+  \item If $z_k\neq x_m$, then $Z$ is a common subsequence of $X_m-1$ and $Y$.
+  We assume that another common subsequence $W$ of $X_{m-1}$ and $Y$ with length
+  greater than $k$, then $W$ is an LCS of $X_m$ and $Y$. Since $x_m\neq y_n$
+  and this is not possible and contradicts with the assumption that $Z$ is an
+  LCS of $X$ and $Y$.
+  \item Symmetric with the proof above.
+\end{enumerate}
 
 \subsubsection*{Runtime $\Theta(mn)$}
 The algorithm runs in $\Theta(mn)$ time, since sequence $X$ has length $m$, and
