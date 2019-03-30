@@ -1,0 +1,112 @@
+\iffalse
+\begin{itemize}
+    \item Dynamic Programming
+    \begin{itemize}
+        \item Divide the problem into subproblem
+        \item Solve the subproblems only once and save the solution
+        \item Top-down memoization: recursion
+        \item Bottom-up: 2 nestede \texttt{for}-loops
+    \end{itemize}
+    \item Longest common subsequence
+    \begin{itemize}
+        \item Finds a string that both the initial strings have in common
+        \item Demonstration by figure
+        \item Runtime $\Theta(mn)$
+        \item Correctness - Optimal substructure
+    \end{itemize}
+    \item Perspective - Greedy algorithms
+    \begin{itemize}
+        \item Optimises in a different way
+    \end{itemize}
+\end{itemize}
+\fi
+\subsection*{Dynamic Programming}
+If a problem consists of many smaller subproblems, then we only want to solve
+the subproblems once. In order to do this, we store the solution to each
+computed subproblem, so we can find the solution in a table instead of computing
+it once again.\newline\newline
+When a DP algorithm is developed, these four steps are followed:
+\begin{enumerate}
+  \item We define the structure of a optimal solution.
+  \item We define the optimal solution through recursion.
+  \item Compute the optimal solution, through either memoization or in a
+  bottom-up fashion.
+  \item We construct a solution from the computations.
+\end{enumerate}
+\subsubsection*{Top-down memoization}
+Top-down memoization works by solving each subproblem recursively and then
+stores the solution in an array. Each recursive call will start by checking if
+the solution exists in the array. If not, the problem is solved recursively.
+\begin{itemize}
+  \item Uses recursion
+  \item Only solves relevant subproblems
+\end{itemize}
+E.g. the rod cutting example:
+\begin{lstlisting}[escapeinside={(*}{*)}]
+MEM-CUT-ROD(p, m, r)
+ if r[m] (*$\geq$*) 0 then return r[m]
+ if m == 0 then q = 0
+ else
+  q = -(*$\infty$*)
+  for i = 1 to m
+    q = max{q, p[i] + MEM-CUT-ROD(p, m - i, r)}
+ r[m] = q
+ return q
+\end{lstlisting}
+\makecomment{I will not talk about the rod cutting example. This is only for my
+own understanding.}
+\subsubsection*{Bottom-up}
+Bottom-up sorts the subproblems in increasing order, and then solves the
+subproblems in that order, so that the smaller subproblems of a problem have
+been solved. Each solution is stored in an array in the way as memoization.
+\begin{itemize}
+  \item 2 nested \texttt{for}-loops
+  \item Avoids recursion
+\end{itemize}
+E.g. the rod cutting example:
+\begin{lstlisting}[escapeinside={(*}{*)}]
+BOTTOM-UP-CUT-ROD(p, n)
+ let r[0 . . . n] be a new array
+ r[0] = 0
+ for j = 1 to n
+  q = -(*$\infty$*)
+  for i = 1 to j
+    q = max{q, p[i] + r[j - i]}
+    r[j] = q
+ return r[n]
+\end{lstlisting}
+\makecomment{I will not talk about the rod cutting example. This is only for my
+own understanding.}
+\subsection*{Longest common subsequence}
+We have two sequences and we wish to see how similar they are. One way to do so,
+is to find the longest common subsequence. In other words, we wish to see how
+many elements they have in common that come in the same order, but not
+necessarily consecutevily.
+\newline\newline
+We denote that $X_i$ is a subsequence of $X$, which contains the first $i$
+elements of $X$. The same applies for other sequences. In order to find the LCS
+of the two sequences $X$ and $Y$, we also need to find the LCS for $X_{m-1}$
+and $Y_{n-1}$, and so on. Hence the algorithm is solved in a bottom-up fashion.
+\subsubsection*{Example}
+\begin{figure}[H]
+  \includegraphics{pictures/LCS.png}
+  \caption{$X=[FIZZ]$ and $Y=[BUZZ]$ with LCS $Z=[ZZ]$}
+\end{figure}
+
+\subsubsection*{Correctness - Optimal substructure}
+Let $X=[x_1,x_2,\dots,x_m]$ and $Y=[y_1,y_2,\dots,y_n]$ be sequences, and let
+$Z=[z_1,z_2,\dots,z_k]$ be any LCS of $X$ and $Y$.
+\begin{enumerate}
+  \item If $x_m=y_n$, then $z_k=x_m=y_n$ and $Z_{k-1}$ is an LCS of $X_{m-1}$
+  and $Y_{n-1}$.
+  \item If $x_m\neq y_n$, then $z_k\neq x_m$ implies that $Z$ is an LCS of
+  $X_{m-1}$ and $Y$.
+  \item If $x_m\neq y_n$, then $z_k\neq y_n$ implies that $Z$ is an LCS of $X$
+  and $Y_{n-1}$.
+\end{enumerate}
+
+\subsubsection*{Runtime $\Theta(mn)$}
+The algorithm runs in $\Theta(mn)$ time, since sequence $X$ has length $m$, and
+sequence $Y$ has length $n$. For each element in each sequence, we check if
+they are the same, which is done by two nested \texttt{for}-loops, that run
+$m\cdot n$ times. Therefore the running time is $\Theta(mn)$.
