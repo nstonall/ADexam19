@@ -1,22 +1,51 @@
-\iffalse
-\begin{itemize}
-    \item Greedy Algorithm
-    \begin{itemize}
-        \item Divided the problem into subproblems
-        \item Solves the one that most optimal at the time
-        \item Recursive greedy
-        \item Iterative greedy
-    \end{itemize}
-    \item Algorithm: Huffman Codes
-    \begin{itemize}
-        \item Efficient data compression
-        \item Demonstration (by manually running the algorithm on the board)
-        \item Runtime: $O(n\log n)$ (set of \texttt{n} characteres)
-        \item Correctness - Proof by greedy choice property
-    \end{itemize}\iffalse
-    \item Perspective: Activity selection problem (also a greedy algorithm)\fi
-\end{itemize}
-\fi
-
-
 \subsection*{Greedy Algorithm}
+A greedy algorithm always makes the local choice that looks best at the moment.
+In the same way as DP the solution consist of several subsolutions. It can be
+solved recursively or iteratively. We will now look at a iterative greedy
+algorithm.
+
+\subsection*{Algorithm: Huffman Codes}
+The Huffman algorithm finds the optimal prefix code for a character based on
+the frequency. It can reduce the size of a file from $20$ \% to $90$ \%. It
+reduces the amount of bits needed to represent a given character, by letting
+the most frequent characters be represented by the least amount of bits. It is
+an iterative greedy algorithm.
+\subsubsection*{Example}
+ \begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.5]{pictures/huffman.png}
+   \caption{Huffman example with string \texttt{noah}}
+ \end{figure}
+\subsubsection*{Runtime: $O(n\log n)$ (set of \texttt{n} characteres)}
+We assume that, when Huffmans is excecuted that the data is structered as a
+binary min-heap. Building the min-heap using the \texttt{BUILD-MIN-HEAP}
+procedure, will take $O(n)$ time. In order to make our greedy choice, we wish
+to use the \texttt{EXTRACT-MIN} operation, which takes $O(\lg n)$ time. This is
+done $n-1$ times and the algorithm returns a call to \texttt{EXTRACT-MIN},
+and in the end the heap operation is called $n$ times. Hence the algorithm runs
+in $O(n\lg n)$.
+
+\subsubsection*{Correctness - Proof by greedy choice property}
+In order to prove that the greedy choice is the optimal choice we will prove
+Huffman codes using the greedy choice property.
+\newline\newline
+Let $C$ be an alpabet where every character $c\in C$ has a frequency $f_c$. Let
+$x,a\in C$ and $f_x\leq f_a$. There exists an optimal parse tree $T$, where $a$
+is at the max depth of the tree.\newline\newline
+
+\begin{align*}
+  T=OPT\\
+  T':T \textrm{ but where a greedy choice places $x$ at the bottom of the tree
+  and replaces $a$.}
+\end{align*}
+\begin{align*}
+  B(T')&=B(T)-f_a\cdot d_T(a)-f_x\cdot d_T(x)
+  +f_a\cdot d_T(x)+f_x\cdot d_T(a)\\
+  &=B(T)+(f_a-f_x)(d_T(x)-d_T(a))\\
+  (f_a-f_x)\geq0&\textrm{ Because $f_a$ is larger than $f_x$}\\
+  (d_T(x)-d_T(a))\leq0&\textrm{ Because $d_T(a)$ is the maximum depth and
+  therefore larger than $d_T(x)$.}\\
+  (f_a-f_x)(d_T(x)-d_T(a))\leq0&\textrm{ Because of multiplication rules.}\\
+  B(T')&\leq B(T) \Rightarrow T'\textrm{ is optimal}
+\end{align*}
+Therefore the greedy choice is the most optimal.
