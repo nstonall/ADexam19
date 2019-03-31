@@ -1,13 +1,13 @@
 # ADexam19
-My exam is monday 8:00. I will stop updating this repository sunday evening.
+My exam is monday 8:00. I will not update this repository any further.
 
 ### Done
 * Divide and Conquer
 * Dynamic Programming
 * Amortized Analysis
+* Greedy Algorithms (this is okay-ish)
 
 ### In Progress
-* Greedy Algorithms
 
 ### To do
 * Fib Heaps
