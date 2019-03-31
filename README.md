@@ -6,9 +6,11 @@ My exam is monday 8:00. I will stop updating this repository sunday evening.
 * Dynamic Programming
 * Amortized Analysis
 
+### In Progress
+* Greedy Algorithms
+
 ### To do
 * Fib Heaps
 * Balanced Binary Search Trees
-* Greedy Algorithms
 * Minimum Spanning Trees
 * Shortest Paths
